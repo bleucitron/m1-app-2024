@@ -5,6 +5,7 @@
 
 <nav>
 	<ul>
+		<li><a href="/" class:current={$page.url.pathname === '/'}>Accueil</a></li>
 		<li><a href="/team" class:current={$page.url.pathname === '/team'}>Team</a></li>
 		<li>
 			<a href="/pokedex" class:current={$page.url.pathname === '/pokedex'}>Pokedex</a>
