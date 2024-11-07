@@ -1,7 +1,7 @@
-import pokemons from '$lib/pokemons.json';
+import { getPokemonsFromDB } from '$lib/data';
 
 export function load() {
 	return {
-		pokemons
+		pokemons: getPokemonsFromDB()
 	};
 }
