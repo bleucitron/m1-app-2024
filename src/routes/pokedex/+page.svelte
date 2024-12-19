@@ -4,12 +4,33 @@
 
 <h1>Pokedex</h1>
 
-<a href="/pokedex/1"
-	><img src={data.pokemons[0].sprites.back_default} alt={data.pokemons[0].name} /></a
->
-<a href="/pokedex/2"
-	><img src={data.pokemons[1].sprites.back_default} alt={data.pokemons[1].name} /></a
->
-<a href="/pokedex/3"
-	><img src={data.pokemons[2].sprites.back_default} alt={data.pokemons[2].name} /></a
->
+<ul>
+	{#each data.pokemons as { id, name, sprites }}
+		{@const src = sprites.back_default}
+		<li class:found={id % 2 === 0}><a href="/pokedex/{id}"><img {src} alt={name} /></a></li>
+	{/each}
+</ul>
+
+<style>
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		margin-block: 1rem;
+		gap: 1rem;
+	}
+	li:hover img {
+		filter: drop-shadow(0px 0px 10px #333);
+	}
+	li img {
+		filter: contrast(0%) brightness(200%);
+	}
+	li:hover img {
+		filter: contrast(0%) brightness(200%) drop-shadow(0px 0px 10px #333);
+	}
+	li.found img {
+		filter: none;
+	}
+	li.found:hover img {
+		filter: drop-shadow(0px 0px 10px #333);
+	}
+</style>
