@@ -1,21 +1,22 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { pokedex } from '$lib/pokedex.svelte';
 	const { children, data } = $props();
+
+	const pathname = $derived($page.url.pathname);
 </script>
 
 <nav>
 	<ul>
-		<li><a href="/" class:current={$page.url.pathname === '/'}>Accueil</a></li>
+		<li><a href="/" class:current={pathname === '/'}>Accueil</a></li>
 		<li>
-			<a href="/team" class:current={$page.url.pathname === '/team'}>Team({data.teamSize})</a>
+			<a href="/team" class:current={pathname === '/team'}>Team({data.teamSize})</a>
 		</li>
 		<li>
-			<a href="/pokedex" class:current={$page.url.pathname === '/pokedex'}
-				>Pokedex({data.speciesFound})</a
-			>
+			<a href="/pokedex" class:current={pathname === '/pokedex'}>Pokedex({pokedex.ids.length})</a>
 		</li>
-		<li><a href="/faq" class:current={$page.url.pathname === '/faq'}>FAQ</a></li>
-		<li><a href="/profil" class:current={$page.url.pathname === '/profil'}>Profil</a></li>
+		<li><a href="/faq" class:current={pathname === '/faq'}>FAQ</a></li>
+		<li><a href="/profil" class:current={pathname === '/profil'}>Profil</a></li>
 	</ul>
 </nav>
 

@@ -3,11 +3,12 @@
 		id: number;
 		name: string;
 		img: string;
+		found?: boolean;
 	};
-	const { id, name, img }: Props = $props();
+	const { id, name, img, found = false }: Props = $props();
 </script>
 
-<div class="Pokemon" class:found={id % 2 === 0}>
+<div class="Pokemon" class:found>
 	<p>#{id}</p>
 	<p>{name}</p>
 

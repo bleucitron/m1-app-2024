@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { pokedex } from '$lib/pokedex.svelte';
 	const { data } = $props();
 </script>
 
@@ -7,7 +8,9 @@
 <ul>
 	{#each data.pokemons as { id, name, sprites }}
 		{@const src = sprites.back_default}
-		<li class:found={id % 2 === 0}><a href="/pokedex/{id}"><img {src} alt={name} /></a></li>
+		<li class:found={pokedex.ids.includes(id)}>
+			<a href="/pokedex/{id}"><img {src} alt={name} /></a>
+		</li>
 	{/each}
 </ul>
 

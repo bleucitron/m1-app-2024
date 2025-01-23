@@ -22,6 +22,5 @@
 	img {
 		height: 15rem;
 		object-fit: cover;
-		filter: contrast(0%) brightness(200%);
 	}
 </style>
