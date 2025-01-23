@@ -11,7 +11,8 @@
 	$effect(() => {
 		if (started) {
 			setInterval(() => {
-				wildId = getRandomNumber(1, data.pokemons.length + 1);
+				wildId = getRandomNumber(1, 152);
+				console.log(wildId);
 			}, 2000);
 		}
 	});
@@ -40,7 +41,7 @@
 		img={wildPokemon.sprites.front_default}
 		name={wildPokemon.name}
 		catchPokemon={() => {
-			pokedex.discover(wildId);
+			if (wildId) pokedex.discover(wildId);
 		}}
 	/>
 {/if}
