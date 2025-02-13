@@ -31,6 +31,7 @@
 				{name}
 				catchPokemon={() => {
 					pokedex.discover(id);
+					fetch('/api/pokedex', { method: 'POST', body: JSON.stringify({ id }) });
 				}}
 			/>
 		{/each}
