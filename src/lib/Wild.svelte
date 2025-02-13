@@ -2,7 +2,7 @@
 	type Props = {
 		name: string;
 		img: string;
-		catchPokemon: () => void;
+		catchPokemon: () => Promise<void>;
 	};
 	const { img, name, catchPokemon }: Props = $props();
 </script>

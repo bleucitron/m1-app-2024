@@ -1,7 +1,11 @@
-export function load() {
+import { readPokedex } from '$lib/db/pokedex';
+
+export async function load({ depends }) {
+	depends('pokedex:all');
+	const pokedex = await readPokedex();
+
 	return {
-		found: 2,
-		speciesFound: 3,
+		pokedex,
 		teamSize: 10
 	};
 }

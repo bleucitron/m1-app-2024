@@ -1,14 +1,13 @@
 <script lang="ts">
-	import { pokedex } from '$lib/pokedex.svelte';
 	import Pokemon from '$lib/Pokemon.svelte';
 
 	const { data } = $props();
-	const pokemon = $derived(data.pokemon);
+	const { pokemon, pokedex } = $derived(data);
 </script>
 
 <Pokemon
 	name={pokemon.name}
 	id={pokemon.id}
 	img={pokemon.sprites.front_default}
-	found={pokedex.ids.includes(pokemon.id)}
+	found={pokedex.includes(pokemon.id)}
 />
