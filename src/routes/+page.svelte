@@ -2,6 +2,7 @@
 	import { getRandomNumber } from '$lib/helpers';
 	import Wild from '$lib/Wild.svelte';
 	import { invalidate } from '$app/navigation';
+	import { recent } from '$lib/recent.svelte';
 
 	let wildId: number | undefined = $state();
 	let { data } = $props();
@@ -11,6 +12,7 @@
 
 	async function catchPokemon(id: number) {
 		await fetch('/api/pokedex', { method: 'POST', body: JSON.stringify({ id }) });
+		recent.add(id);
 		invalidate('pokedex:all');
 	}
 

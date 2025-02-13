@@ -4,11 +4,12 @@
 		name: string;
 		img: string;
 		found?: boolean;
+		recent?: boolean;
 	};
-	const { id, name, img, found = false }: Props = $props();
+	const { id, name, img, found = false, recent = false }: Props = $props();
 </script>
 
-<div class="Pokemon" class:found>
+<div class="Pokemon" class:found class:recent>
 	<p>#{id}</p>
 	<p>{name}</p>
 
@@ -35,5 +36,8 @@
 	}
 	.found img {
 		filter: none;
+	}
+	.recent {
+		outline: 1px solid red;
 	}
 </style>
