@@ -9,14 +9,23 @@ export const actions = {
 		const confirmPassword = data.get('confirmPassword')?.toString();
 		console.log(userName, password);
 
-		if (!userName) return fail(400, { message: "Il manque le nom d'utilisateur" });
+		if (!userName)
+			return fail(400, { message: "Il manque le nom d'utilisateur", userName, field: 'userName' });
 		if (!password || password.length < 4)
-			return fail(400, { message: "Le mot de passe n'existe pas ou il est trop court" });
+			return fail(400, {
+				message: "Le mot de passe n'existe pas ou il est trop court",
+				userName,
+				field: 'password'
+			});
 		if (password !== confirmPassword)
-			return fail(400, { message: 'Le mot de passe est différent dans les deux champs' });
+			return fail(400, {
+				message: 'Le mot de passe est différent dans les deux champs',
+				userName,
+				field: 'confirmPassword'
+			});
 
 		addUser({ userName, password });
 
-		return { success: true };
+		return { success: true, userName, field: null };
 	}
 };

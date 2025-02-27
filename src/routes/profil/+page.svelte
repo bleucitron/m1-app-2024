@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { fromStore } from 'svelte/store';
+
 	let { form } = $props();
 </script>
 
@@ -11,17 +13,23 @@
 {/if}
 
 <form method="POST">
-	<label>
+	<label class:error={form?.field === 'userName'}>
 		Username
-		<input type="text" name="userName" />
+		<input type="text" name="userName" value={form?.userName} />
 	</label>
-	<label>
+	<label class:error={form?.field === 'password'}>
 		Password
 		<input type="password" name="password" />
 	</label>
-	<label>
+	<label class:error={form?.field === 'confirmPassword'}>
 		Confirm password
 		<input type="password" name="confirmPassword" />
 	</label>
 	<button>Envoyer</button>
 </form>
+
+<style>
+	.error {
+		color: red;
+	}
+</style>
