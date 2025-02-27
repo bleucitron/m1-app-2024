@@ -12,9 +12,11 @@
 	<p>Génial, tu es bien connecté !</p>
 {/if}
 
-<form method="POST">
+<h2>Inscription</h2>
+
+<form action="?/register" method="POST">
 	<label class:error={form?.field === 'name'}>
-		name
+		Name
 		<input type="text" name="name" value={form?.name} />
 	</label>
 	<label class:error={form?.field === 'password'}>
@@ -25,7 +27,21 @@
 		Confirm password
 		<input type="password" name="confirmPassword" />
 	</label>
-	<button>Envoyer</button>
+	<button>S'inscrire</button>
+</form>
+
+<h2>Connexion</h2>
+
+<form action="?/login" method="POST">
+	<label class:error={form?.field === 'name'}>
+		Name
+		<input type="text" name="name" value={form?.name} />
+	</label>
+	<label class:error={form?.field === 'password'}>
+		Password
+		<input type="password" name="password" />
+	</label>
+	<button>Se connecter</button>
 </form>
 
 <style>

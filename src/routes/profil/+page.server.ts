@@ -1,8 +1,8 @@
-import { addUser } from '$lib/server/db/user.js';
+import { addUser, checkUser } from '$lib/server/db/user.js';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {
-	default: async ({ request }) => {
+	register: async ({ request }) => {
 		const data = await request.formData();
 		const name = data.get('name')?.toString();
 		const password = data.get('password')?.toString();
@@ -26,7 +26,25 @@ export const actions = {
 		try {
 			await addUser({ name, password });
 
-			return { success: true, name, field: null };
+			return { success: true, name: null, field: null };
+		} catch (error) {
+			return fail(400, {
+				message: error.message,
+				name,
+				field: 'name'
+			});
+		}
+	},
+	login: async ({ request }) => {
+		const data = await request.formData();
+		const name = data.get('name')?.toString();
+		const password = data.get('password')?.toString();
+		if (!name)
+			return fail(400, { message: "Il manque le nom d'utilisateur", name, field: 'userName' });
+		try {
+			await checkUser(name, password);
+
+			return { success: true, name: null, field: null };
 		} catch (error) {
 			return fail(400, {
 				message: error.message,
