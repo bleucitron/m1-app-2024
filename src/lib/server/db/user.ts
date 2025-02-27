@@ -1,4 +1,5 @@
 import { writeJSON, readJSON } from '$lib/server/io';
+import { addCookie, createRandomCookie } from './cookies';
 
 type User = {
 	name: string;
@@ -18,10 +19,17 @@ export async function addUser(user: User) {
 		...users
 	});
 }
+
 export async function checkUser(name: string, password?: string) {
 	const users = await readUsers();
-	if (!(name in users) || (password !== users[name].password)) {
+
+	const cookie = createRandomCookie();
+
+	await addCookie(name, cookie);
+
+	if (!(name in users) || password !== users[name].password) {
 		throw new Error("Oupss y'a un probleme");
 	}
-	return { name }
+	return cookie;
 }
+

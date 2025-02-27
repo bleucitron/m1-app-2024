@@ -2,7 +2,7 @@ import { addUser, checkUser } from '$lib/server/db/user.js';
 import { fail } from '@sveltejs/kit';
 
 export const actions = {
-	register: async ({ request, cookies }) => {
+	register: async ({ request }) => {
 		const data = await request.formData();
 		const name = data.get('name_register')?.toString();
 		const password = data.get('password_register')?.toString();
@@ -25,7 +25,6 @@ export const actions = {
 			});
 		try {
 			await addUser({ name, password });
-			cookies.set('userCookie', 'my-cookie-value', { path: "/" });
 			return { success: true, name: null, field: null };
 		} catch (error) {
 			return fail(400, {
@@ -42,8 +41,8 @@ export const actions = {
 		if (!name)
 			return fail(400, { message: "Il manque le nom d'utilisateur", name, field: 'name_login' });
 		try {
-			await checkUser(name, password);
-			cookies.set('userCookie', 'my-cookie-value', { path: "/" });
+			const cookie = await checkUser(name, password);
+			cookies.set('userCookie', cookie, { path: '/' });
 			return { success: true, name: null, field: null };
 		} catch (error) {
 			return fail(400, {
