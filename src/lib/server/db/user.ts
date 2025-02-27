@@ -1,13 +1,20 @@
 import { writeJSON, readJSON } from '$lib/server/io';
 
 type User = {
-    userName: string;
-    password: string;
-}
+	name: string;
+	password: string;
+};
 
-export function readUser() {
-    return readJSON('user').catch(() => []) as Promise<User>;
+export function readUsers() {
+	return readJSON('userByName').catch(() => {}) as Promise<{ [k: string]: User }>;
 }
 export async function addUser(user: User) {
-    return writeJSON('user', user);
+	const users = await readUsers();
+	if (user.name in users) {
+		throw new Error("L'utilisateur existe déjà ");
+	}
+	return writeJSON('userByName', {
+		[user.name]: user,
+		...users
+	});
 }

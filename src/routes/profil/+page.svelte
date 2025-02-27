@@ -13,9 +13,9 @@
 {/if}
 
 <form method="POST">
-	<label class:error={form?.field === 'userName'}>
-		Username
-		<input type="text" name="userName" value={form?.userName} />
+	<label class:error={form?.field === 'name'}>
+		name
+		<input type="text" name="name" value={form?.name} />
 	</label>
 	<label class:error={form?.field === 'password'}>
 		Password
