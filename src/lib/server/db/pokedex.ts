@@ -1,4 +1,4 @@
-import { writeJSON, readJSON } from '$lib/io';
+import { writeJSON, readJSON } from '$lib/server/io';
 
 export function readPokedex() {
 	return readJSON('pokedex').catch(() => []) as Promise<number[]>;

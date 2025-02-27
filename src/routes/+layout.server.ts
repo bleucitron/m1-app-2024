@@ -1,4 +1,4 @@
-import { readPokedex } from '$lib/db/pokedex';
+import { readPokedex } from '$lib/server/db/pokedex';
 
 export async function load({ depends }) {
 	depends('pokedex:all');

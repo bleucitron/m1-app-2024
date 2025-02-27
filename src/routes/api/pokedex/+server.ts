@@ -1,6 +1,6 @@
 import { json } from '@sveltejs/kit';
-import { addToPokedex } from '$lib/db/pokedex';
-import { readJSON } from '$lib/io';
+import { addToPokedex } from '$lib/server/db/pokedex';
+import { readJSON } from '$lib/server/io';
 
 export async function GET() {
 	const data = await readJSON('pokedex');
