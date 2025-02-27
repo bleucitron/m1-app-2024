@@ -1,4 +1,4 @@
-import { getPokemonFromDB } from '$lib/data';
+import { getPokemonFromDB } from '$lib/server/data';
 
 export function load({ params }) {
 	return {
